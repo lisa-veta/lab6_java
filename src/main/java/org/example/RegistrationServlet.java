@@ -37,13 +37,13 @@ public class RegistrationServlet extends HttpServlet {
         UserProfile userProfile = new UserProfile(login, password, email);
         try {
             if(DBService.getUserByLogin(login) == null){
-                DBService.addUser(userProfile);
-                File directory = new File("D:/filemanager/"+login);
+                File directory = new File("D:/filemanag1/"+login);
                 if (!directory.mkdir()) {
                     resp.setContentType("text/html;charset=utf-8");
                     resp.getWriter().println("<script>alert('Ошибка создания профиля');</script>");
                     return;
                 }
+                DBService.addUser(userProfile);
                 resp.sendRedirect("/sign-up");
             }
             else{

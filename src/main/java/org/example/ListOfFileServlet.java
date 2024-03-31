@@ -1,8 +1,5 @@
 package org.example;
 
-import accounts.AccountService;
-import accounts.UserProfile;
-
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -10,11 +7,9 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.File;
 import java.io.IOException;
-import java.util.Objects;
 
 @WebServlet(urlPatterns = {"/list-files"})
 public class ListOfFileServlet extends HttpServlet {
-
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         req.setCharacterEncoding("UTF-8");
@@ -25,11 +20,12 @@ public class ListOfFileServlet extends HttpServlet {
             return;
         }
         String directoryPath = req.getParameter("path");
-        if (directoryPath == null || directoryPath.equals("D:\\filemanager")) {
-            directoryPath = "D:\\filemanager\\"+ login;
+        String dir = "D:\\filemanag1\\";
+        if (directoryPath == null || directoryPath.equals("D:\\filemanag1")) {
+            directoryPath = dir + login;
         }
-        if(!directoryPath.startsWith("D:\\filemanager\\" + login)){
-            directoryPath = "D:\\filemanager\\" + login;
+        if(!directoryPath.startsWith(dir + login)){
+            directoryPath = dir + login;
         }
         File folder = new File(directoryPath);
         File[] files = folder.listFiles(File::isFile);
@@ -37,7 +33,7 @@ public class ListOfFileServlet extends HttpServlet {
         req.setAttribute("files", files);
         req.setAttribute("folders", folders);
         req.setAttribute("currentPath", directoryPath);
-        if (directoryPath.equals("D:\\filemanager\\" + login)) {
+        if (directoryPath.equals(dir + login)) {
             req.setAttribute("previousPath", directoryPath);
         }
         else{

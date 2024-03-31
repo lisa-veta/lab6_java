@@ -23,14 +23,16 @@ public class DBService {
             getConnection();
         }
     }
-    public static void addUser(UserProfile user) throws ClassNotFoundException, SQLException {
-        checkConnection();
-        UsersDAO dao = new UsersDAO(connection);
-        dao.insertUser(user);
-    }
+
     public static UserProfile getUserByLogin(String login) throws SQLException, ClassNotFoundException {
         checkConnection();
         UsersDAO dao = new UsersDAO(connection);
         return dao.get(login);
+    }
+
+    public static void addUser(UserProfile user) throws ClassNotFoundException, SQLException {
+        checkConnection();
+        UsersDAO dao = new UsersDAO(connection);
+        dao.insertUser(user);
     }
 }

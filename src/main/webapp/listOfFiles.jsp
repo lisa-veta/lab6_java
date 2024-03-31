@@ -10,7 +10,7 @@
     File[] folders = (File[]) request.getAttribute("folders");
     String path = (String)request.getAttribute("currentPath");
     if(path == null){
-        path = "D:/filemanager/";
+        path = "D:/filemanag1/";
     }
     String previousPath = (String)request.getAttribute("previousPath");
 %>
